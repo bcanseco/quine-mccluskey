@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -44,6 +45,16 @@ namespace Algorithm.Minterms
             }
             
             InBinary = bits.ToString();
+        }
+
+        /// <summary>
+        ///   An alternate constructor for making a minterm when
+        ///   its variables and binary form are already known.
+        /// </summary>
+        public Minterm(List<Variable> variables, string inBinary)
+        {
+            Variables = variables;
+            InBinary = inBinary;
         }
 
         public override string ToString()

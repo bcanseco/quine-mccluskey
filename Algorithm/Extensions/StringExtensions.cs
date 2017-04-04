@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Algorithm.Extensions
 {
     /// <summary>
-    ///   Holding class for <see cref="string"/> helper functions.
+    ///   Holding class for primitive helper functions.
     /// </summary>
-    public static class StringExtensions
+    public static class SystemExtensions
     {
         /// <summary>
         ///   Gets all the indices of a substring inside a string.
@@ -41,5 +41,14 @@ namespace Algorithm.Extensions
             chars[index] = newChar;
             return new string(chars);
         }
+
+        /// <summary>
+        ///   Converts a zero-indexed integer to its alphabetic form. 
+        /// </summary>
+        /// <example>0 => A, 1 => B, 2 => C, etc.</example>
+        /// <param name="number">The integer to use.</param>
+        /// <returns>A capital letter.</returns>
+        public static char AsAlphabetLetter(this int number)
+            => (char)(65 + number);
     }
 }

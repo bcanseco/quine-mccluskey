@@ -70,13 +70,26 @@ namespace Algorithm.Minterms
             if (differentIndex == -1)
                 return Task.FromResult(false); // No matches
 
-            var newBinary = InBinary.ReplaceAt(differentIndex, '-');
-            var newVariables = Variables
-                .Where((value, index) => index != differentIndex)
-                .ToList();
+            if (Variables.Count != 1)
+            {
+                var newBinary = InBinary.ReplaceAt(differentIndex, '-');
+                var newVariables = Variables
+                    .Where((value, index) => index != differentIndex)
+                    .ToList();
 
-            combination = new CompositeMinterm(newVariables, newBinary, this, other);
+                combination = new CompositeMinterm(newVariables, newBinary, this, other);
+            }
+            else
+            {
+                // Minterms only have one matching variable (e.g. A or !A).
+                // In this case, the combination will be the true one.
+                var finalMinterm = Variables[0].NotFlagSet ? other : this;
+                var droppedMinterm = Variables[0].NotFlagSet ? this : other;
 
+                combination = new CompositeMinterm(finalMinterm.Variables,
+                    finalMinterm.InBinary, finalMinterm, droppedMinterm);
+            }
+            
             return Task.FromResult(true);
         }
 

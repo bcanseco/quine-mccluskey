@@ -27,6 +27,15 @@ namespace Algorithm
         }
 
         /// <summary>
+        ///   An alternate constructor for when an
+        ///   expression's minterms are already known.
+        /// </summary>
+        public Expression(List<MintermBase> minterms)
+        {
+            Minterms = minterms;
+        }
+
+        /// <summary>
         ///   Simplifies the <see cref="Minterms"/> contents
         ///   using the Q-M algorithm and returns the expression.
         /// </summary>
